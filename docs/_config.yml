@@ -1,10 +1,7 @@
 theme: jekyll-theme-cayman
 title: TRC2025 Documentation
 description: Documentation technique du TEKBOT ROBOTICS CHALLENGE 2025
-baseurl: "/Documentation"
-url: "https://ifri-trc2k25-winers.github.io"
 
-# Structure de navigation simplifiée
 navigation:
   - title: Accueil
     url: /
@@ -15,27 +12,104 @@ navigation:
     children:
       - title: Test 1 - Gyroscope
         url: /electronics/test-01-gyroscope-accelerometer/
+        sections:
+          - title: Circuit Analysis
+            url: /electronics/test-01-gyroscope-accelerometer/circuit-analysis
+          - title: Component Selection
+            url: /electronics/test-01-gyroscope-accelerometer/component-selection
+          - title: Power Management
+            url: /electronics/test-01-gyroscope-accelerometer/power-management
+          - title: Testing Results
+            url: /electronics/test-01-gyroscope-accelerometer/testing-results
+          - title: Troubleshooting
+            url: /electronics/test-01-gyroscope-accelerometer/troubleshooting
       - title: Test 2 - Boîte Noire
         url: /electronics/test-02-black-box/
+        sections:
+          - title: I2C Communication
+            url: /electronics/test-02-black-box/i2c-communication
+          - title: PCB Design
+            url: /electronics/test-02-black-box/pcb-design/design-process
+          - title: Validation Tests
+            url: /electronics/test-02-black-box/validation-tests
       - title: Test 3 - 7 Segments
         url: /electronics/test-03-7segment-servo/
+        sections:
+          - title: Servo Control
+            url: /electronics/test-03-7segment-servo/servo-control
+          - title: Power Distribution
+            url: /electronics/test-03-7segment-servo/power-distribution
+          - title: PCA9685 Integration
+            url: /electronics/test-03-7segment-servo/pca9685-integration
+          - title: Display Mechanics
+            url: /electronics/test-03-7segment-servo/display-mechanics
+
   - title: Tests Informatique
     icon: code
     type: category
     children:
-      - title: Test 1 - Classes Robot
+      - title: Test 1 - Classes Robot 
         url: /software/test-01-robot-class/
+        sections:
+          - title: UML Diagrams
+            url: /software/test-01-robot-class/uml-diagrams
+          - title: C++ Implementation
+            url: /software/test-01-robot-class/cpp-implementation
+          - title: Python Implementation
+            url: /software/test-01-robot-class/python-implementation
+          - title: Testing Scenarios
+            url: /software/test-01-robot-class/testing-scenarios
       - title: Test 2 - ROS2
         url: /software/test-02-ros2-intro/
+        sections:
+          - title: Package Structure
+            url: /software/test-02-ros2-intro/package-structure
+          - title: Publisher Node
+            url: /software/test-02-ros2-intro/publisher-node
+          - title: Subscriber Node
+            url: /software/test-02-ros2-intro/subscriber-node
+          - title: Launch Files
+            url: /software/test-02-ros2-intro/launch-files
       - title: Test 3 - Pathfinding
         url: /software/test-03-pathfinding/
+        sections:
+          - title: Algorithm Comparison
+            url: /software/test-03-pathfinding/algorithm-comparison
+          - title: Gazebo Simulation
+            url: /software/test-03-pathfinding/gazebo-simulation
+          - title: RViz Visualization
+            url: /software/test-03-pathfinding/rviz-visualization
+          - title: Performance Analysis
+            url: /software/test-03-pathfinding/performance-analysis
+
   - title: Tests Mécanique
     icon: build
     type: category
     children:
       - title: Test 1 - Débutant
         url: /mechanical/test-01-beginner/
+        sections:
+          - title: Piece Modeling
+            url: /mechanical/test-01-beginner/piece-modeling/piece-I
+          - title: Assembly Gripper
+            url: /mechanical/test-01-beginner/assembly-gripper/assembly-process
+          - title: SolidWorks Techniques
+            url: /mechanical/test-01-beginner/solidworks-techniques
       - title: Test 2 - Intermédiaire
         url: /mechanical/test-02-intermediate/
+        sections:
+          - title: Parametric Design
+            url: /mechanical/test-02-intermediate/parametric-design
+          - title: Chain Assembly
+            url: /mechanical/test-02-intermediate/chain-assembly
+          - title: Modification Workflow
+            url: /mechanical/test-02-intermediate/modification-workflow
       - title: Test 3 - Avancé
         url: /mechanical/test-03-advanced/
+        sections:
+          - title: Complex Geometry
+            url: /mechanical/test-03-advanced/complex-geometry
+          - title: Material Selection
+            url: /mechanical/test-03-advanced/material-selection
+          - title: Manufacturing
+            url: /mechanical/test-03-advanced/manufacturing-considerations

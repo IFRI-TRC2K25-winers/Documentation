@@ -17,7 +17,7 @@
             <nav class="sidebar-nav">
                 {% for item in site.navigation %}
                     {% if item.type == "category" %}
-                        <details class="nav-group">
+                        <details class="nav-group" open>
                             <summary class="nav-group-header">
                                 <i class="material-icons">{{ item.icon }}</i>
                                 <span>{{ item.title }}</span>
@@ -25,9 +25,22 @@
                             <ul class="nav-group-content">
                                 {% for child in item.children %}
                                     <li class="nav-item">
-                                        <a href="{{ child.url | relative_url }}" class="nav-link">
-                                            {{ child.title }}
-                                        </a>
+                                        <details class="sub-nav-group">
+                                            <summary class="sub-nav-header">
+                                                <span>{{ child.title }}</span>
+                                            </summary>
+                                            {% if child.sections %}
+                                            <ul class="sub-nav-content">
+                                                {% for section in child.sections %}
+                                                <li>
+                                                    <a href="{{ section.url | relative_url }}" class="nav-link">
+                                                        {{ section.title }}
+                                                    </a>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                            {% endif %}
+                                        </details>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -49,5 +62,22 @@
             {{ content }}
         </main>
     </div>
+
+    <script>
+        // Sauvegarder l'état des details dans localStorage
+        document.querySelectorAll('details').forEach(detail => {
+            const id = detail.closest('.nav-group')?.querySelector('.nav-group-header')?.textContent.trim() || 
+                      detail.closest('.sub-nav-group')?.querySelector('.sub-nav-header')?.textContent.trim();
+            
+            if (id) {
+                const stored = localStorage.getItem(`detail-${id}`);
+                if (stored === 'open') detail.setAttribute('open', '');
+                
+                detail.addEventListener('toggle', () => {
+                    localStorage.setItem(`detail-${id}`, detail.open ? 'open' : 'closed');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
