@@ -8,61 +8,70 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <div class="sidebar">
-        <div class="nav-header">
-            <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Logo TRC2025" class="nav-logo">
-            <h2>TRC2025</h2>
-        </div>
-        <nav>
-            {% for item in site.navigation %}
-                <div class="nav-section">
-                    {% if item.children %}
-                        <div class="nav-title">
-                            <span class="material-icons">{{ item.icon }}</span>
-                            {{ item.title }}
-                            <span class="material-icons toggle-icon">expand_more</span>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Logo TRC2025" class="logo">
+                <h1>TRC2025 Documentation</h1>
+            </div>
+            
+            <nav class="sidebar-nav">
+                {% for section in site.navigation %}
+                    <div class="nav-group">
+                        <div class="nav-group-header {% if section.children %}has-children{% endif %}">
+                            <i class="material-icons">{{ section.icon }}</i>
+                            <span>{{ section.title }}</span>
+                            {% if section.children %}
+                                <i class="material-icons expand-icon">chevron_right</i>
+                            {% endif %}
                         </div>
-                        <div class="nav-items">
-                            {% for child in item.children %}
-                                <div class="nav-item">
-                                    <a href="{{ child.url | relative_url }}">
-                                        <span class="material-icons">{{ child.icon }}</span>
-                                        {{ child.title }}
-                                    </a>
-                                </div>
+                        
+                        {% if section.children %}
+                        <ul class="nav-group-content">
+                            {% for item in section.children %}
+                            <li class="nav-item">
+                                <a href="{{ item.url | relative_url }}" class="nav-link">
+                                    <i class="material-icons">{{ item.icon }}</i>
+                                    <span>{{ item.title }}</span>
+                                </a>
+                            </li>
                             {% endfor %}
-                        </div>
-                    {% else %}
-                        <div class="nav-item">
-                            <a href="{{ item.url | relative_url }}">
-                                <span class="material-icons">{{ item.icon }}</span>
-                                {{ item.title }}
-                            </a>
-                        </div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </nav>
+                        </ul>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-header">
+                <h1>{{ page.title }}</h1>
+                {% if page.description %}
+                    <p>{{ page.description }}</p>
+                {% endif %}
+            </div>
+            {{ content }}
+        </main>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Gestion des sections pliables
-            document.querySelectorAll('.nav-title').forEach(title => {
-                title.addEventListener('click', () => {
-                    title.classList.toggle('collapsed');
-                    const items = title.nextElementSibling;
-                    items.style.display = title.classList.contains('collapsed') ? 'none' : 'block';
+        document.addEventListener('DOMContentLoaded', () => {
+            // Gestion de l'expansion des groupes
+            const groups = document.querySelectorAll('.nav-group-header.has-children');
+            groups.forEach(group => {
+                group.addEventListener('click', () => {
+                    group.parentElement.classList.toggle('expanded');
                 });
             });
 
             // Marquer le lien actif
             const currentPath = window.location.pathname;
-            document.querySelectorAll('.nav-item a').forEach(link => {
-                if (link.getAttribute('href') === currentPath) {
-                    link.parentElement.classList.add('active');
-                }
-            });
+            const activeLink = document.querySelector(`.nav-link[href="${currentPath}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+                const parentGroup = activeLink.closest('.nav-group');
+                if (parentGroup) parentGroup.classList.add('expanded');
+            }
         });
     </script>
 </body>
