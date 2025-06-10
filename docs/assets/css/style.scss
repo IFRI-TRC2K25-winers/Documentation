@@ -18,14 +18,17 @@
   min-height: 100vh;
 }
 
+/* Styles pour la sidebar avec défilement */
 .sidebar {
   width: var(--sidebar-width);
   background: var(--bg-sidebar);
-  min-height: 100vh;
+  height: 100vh;
   position: fixed;
   left: 0;
   top: 0;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-muted) var(--bg-sidebar);
 }
 
 .sidebar-header {
@@ -81,10 +84,30 @@
   color: var(--text-primary);
 }
 
+/* Personnalisation de la barre de défilement pour Webkit (Chrome, Safari) */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: var(--bg-sidebar);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--text-muted);
+  border-radius: 4px;
+  border: 2px solid var(--bg-sidebar);
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-secondary);
+}
+
+/* Assurer que le contenu principal ne chevauche pas la sidebar */
 .main-content {
   margin-left: var(--sidebar-width);
   padding: 2rem;
-  flex: 1;
+  width: calc(100% - var(--sidebar-width));
 }
 
 details > summary {
