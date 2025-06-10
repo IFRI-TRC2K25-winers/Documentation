@@ -11,19 +11,15 @@
     <div class="page-wrapper">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Logo TRC2025" class="logo">
                 <h1>TRC2025 Documentation</h1>
             </div>
             
             <nav class="sidebar-nav">
                 {% for section in site.navigation %}
                     <div class="nav-group">
-                        <div class="nav-group-header {% if section.children %}has-children{% endif %}">
+                        <div class="nav-group-header">
                             <i class="material-icons">{{ section.icon }}</i>
-                            <span>{{ section.title }}</span>
-                            {% if section.children %}
-                                <i class="material-icons expand-icon">chevron_right</i>
-                            {% endif %}
+                            {{ section.title }}
                         </div>
                         
                         {% if section.children %}
@@ -31,8 +27,7 @@
                             {% for item in section.children %}
                             <li class="nav-item">
                                 <a href="{{ item.url | relative_url }}" class="nav-link">
-                                    <i class="material-icons">{{ item.icon }}</i>
-                                    <span>{{ item.title }}</span>
+                                    {{ item.title }}
                                 </a>
                             </li>
                             {% endfor %}
@@ -46,33 +41,9 @@
         <main class="main-content">
             <div class="content-header">
                 <h1>{{ page.title }}</h1>
-                {% if page.description %}
-                    <p>{{ page.description }}</p>
-                {% endif %}
             </div>
             {{ content }}
         </main>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Gestion de l'expansion des groupes
-            const groups = document.querySelectorAll('.nav-group-header.has-children');
-            groups.forEach(group => {
-                group.addEventListener('click', () => {
-                    group.parentElement.classList.toggle('expanded');
-                });
-            });
-
-            // Marquer le lien actif
-            const currentPath = window.location.pathname;
-            const activeLink = document.querySelector(`.nav-link[href="${currentPath}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-                const parentGroup = activeLink.closest('.nav-group');
-                if (parentGroup) parentGroup.classList.add('expanded');
-            }
-        });
-    </script>
 </body>
 </html>
