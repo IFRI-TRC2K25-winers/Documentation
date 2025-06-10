@@ -4,8 +4,34 @@ description: Documentation technique du TEKBOT ROBOTICS CHALLENGE 2025
 baseurl: "/Documentation"
 url: "https://ifri-trc2k25-winers.github.io"
 markdown: kramdown
-plugins:
-  - jekyll-relative-links
-relative_links:
-  enabled: true
-  collections: true
+
+# Configuration de la navigation
+navigation:
+  - title: Accueil
+    url: /
+  - title: Tests Électronique
+    children:
+      - title: Test 1 - Gyroscope
+        url: /electronics/test-01-gyroscope-accelerometer/
+      - title: Test 2 - Boîte Noire
+        url: /electronics/test-02-black-box/
+      - title: Test 3 - 7 Segments
+        url: /electronics/test-03-7segment-servo/
+  - title: Tests Informatique
+    children:
+      - title: Test 1 - Classes Robot
+        url: /software/test-01-robot-class/
+      - title: Test 2 - ROS2
+        url: /software/test-02-ros2-intro/
+      - title: Test 3 - Pathfinding
+        url: /software/test-03-pathfinding/
+  - title: Tests Mécanique
+    children:
+      - title: Test 1 - Débutant
+        url: /mechanical/test-01-beginner/
+      - title: Test 2 - Intermédiaire
+        url: /mechanical/test-02-intermediate/
+      - title: Test 3 - Avancé
+        url: /mechanical/test-03-advanced/
+  - title: Test Final
+    url: /final-project/
