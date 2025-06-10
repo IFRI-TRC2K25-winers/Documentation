@@ -17,18 +17,28 @@
             <nav class="sidebar-nav">
                 {% for section in site.navigation %}
                     <div class="nav-group">
-                        <div class="nav-group-header">
+                        <div class="nav-group-header" onclick="toggleSection(this)">
                             <i class="material-icons">{{ section.icon }}</i>
                             <span>{{ section.title }}</span>
+                            <i class="material-icons arrow">chevron_right</i>
                         </div>
                         
                         {% if section.children %}
                         <ul class="nav-group-content">
                             {% for item in section.children %}
                             <li class="nav-item">
-                                <a href="{{ item.url | relative_url }}" class="nav-link {% if page.url == item.url %}active{% endif %}">
-                                    {{ item.title }}
-                                </a>
+                                <div class="nav-item-header" onclick="toggleItem(this)">
+                                    <i class="material-icons">description</i>
+                                    <span>{{ item.title }}</span>
+                                    <i class="material-icons arrow">chevron_right</i>
+                                </div>
+                                <ul class="nav-item-content">
+                                    <li><a href="{{ item.url | relative_url }}#description">Description</a></li>
+                                    <li><a href="{{ item.url | relative_url }}#consignes">Consignes</a></li>
+                                    <li><a href="{{ item.url | relative_url }}#implementation">Implémentation</a></li>
+                                    <li><a href="{{ item.url | relative_url }}#evaluation">Évaluation</a></li>
+                                    <li><a href="{{ item.url | relative_url }}#documentation">Documentation</a></li>
+                                </ul>
                             </li>
                             {% endfor %}
                         </ul>
@@ -45,5 +55,29 @@
             {{ content }}
         </main>
     </div>
+
+    <script>
+        function toggleSection(element) {
+            const content = element.nextElementSibling;
+            const arrow = element.querySelector('.arrow');
+            element.parentElement.classList.toggle('expanded');
+            if (element.parentElement.classList.contains('expanded')) {
+                arrow.style.transform = 'rotate(90deg)';
+            } else {
+                arrow.style.transform = 'rotate(0)';
+            }
+        }
+
+        function toggleItem(element) {
+            const content = element.nextElementSibling;
+            const arrow = element.querySelector('.arrow');
+            element.parentElement.classList.toggle('expanded');
+            if (element.parentElement.classList.contains('expanded')) {
+                arrow.style.transform = 'rotate(90deg)';
+            } else {
+                arrow.style.transform = 'rotate(0)';
+            }
+        }
+    </script>
 </body>
 </html>
