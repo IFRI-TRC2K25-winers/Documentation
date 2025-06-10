@@ -1,0 +1,11 @@
+theme: jekyll-theme-cayman
+title: TRC2025 Documentation
+description: Documentation technique du TEKBOT ROBOTICS CHALLENGE 2025
+baseurl: "/Documentation"
+url: "https://ifri-trc2k25-winers.github.io"
+markdown: kramdown
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true
