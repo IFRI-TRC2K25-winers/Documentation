@@ -9,57 +9,58 @@
 </head>
 <body>
     <div class="sidebar">
+        <div class="nav-header">
+            <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Logo TRC2025" class="nav-logo">
+            <h2>TRC2025</h2>
+        </div>
         <nav>
-            <div class="nav-header">
-                <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Logo TRC2025" class="nav-logo">
-                <h2>TRC2025</h2>
-            </div>
             {% for item in site.navigation %}
-                {% if item.children %}
-                    <div class="nav-title">
-                        <span class="material-icons">{{ item.icon | default: 'folder' }}</span>
-                        {{ item.title }}
-                    </div>
-                    <ul>
-                    {% for child in item.children %}
-                        <li>
-                            <a href="{{ child.url | relative_url }}">
-                                <span class="material-icons">{{ child.icon | default: 'article' }}</span>
-                                {{ child.title }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                    </ul>
-                {% else %}
-                    <div class="nav-item">
-                        <a href="{{ item.url | relative_url }}">
-                            <span class="material-icons">{{ item.icon | default: 'home' }}</span>
+                <div class="nav-section">
+                    {% if item.children %}
+                        <div class="nav-title">
+                            <span class="material-icons">{{ item.icon }}</span>
                             {{ item.title }}
-                        </a>
-                    </div>
-                {% endif %}
+                            <span class="material-icons toggle-icon">expand_more</span>
+                        </div>
+                        <div class="nav-items">
+                            {% for child in item.children %}
+                                <div class="nav-item">
+                                    <a href="{{ child.url | relative_url }}">
+                                        <span class="material-icons">{{ child.icon }}</span>
+                                        {{ child.title }}
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="nav-item">
+                            <a href="{{ item.url | relative_url }}">
+                                <span class="material-icons">{{ item.icon }}</span>
+                                {{ item.title }}
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
             {% endfor %}
         </nav>
     </div>
 
-    <div class="main-content">
-        <div class="page-header">
-            <h1>{{ page.title | default: site.title }}</h1>
-            {% if page.description %}
-                <p>{{ page.description }}</p>
-            {% endif %}
-        </div>
-        {{ content }}
-    </div>
-
     <script>
-        // Ajout d'une classe active au lien courant
         document.addEventListener('DOMContentLoaded', function() {
+            // Gestion des sections pliables
+            document.querySelectorAll('.nav-title').forEach(title => {
+                title.addEventListener('click', () => {
+                    title.classList.toggle('collapsed');
+                    const items = title.nextElementSibling;
+                    items.style.display = title.classList.contains('collapsed') ? 'none' : 'block';
+                });
+            });
+
+            // Marquer le lien actif
             const currentPath = window.location.pathname;
-            const links = document.querySelectorAll('.sidebar a');
-            links.forEach(link => {
+            document.querySelectorAll('.nav-item a').forEach(link => {
                 if (link.getAttribute('href') === currentPath) {
-                    link.classList.add('active');
+                    link.parentElement.classList.add('active');
                 }
             });
         });

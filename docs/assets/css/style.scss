@@ -5,10 +5,11 @@
 
 :root {
   --sidebar-width: 300px;
-  --primary-color: #2c3e50;
-  --secondary-color: #3498db;
-  --bg-light: #f8f9fa;
-  --text-color: #333;
+  --primary-color: #23282d;
+  --secondary-color: #2271b1;
+  --text-light: #f0f0f1;
+  --hover-bg: #2c3338;
+  --tree-line: #404952;
 }
 
 body {
@@ -23,44 +24,98 @@ body {
   bottom: 0;
   width: var(--sidebar-width);
   background: var(--primary-color);
-  color: white;
-  padding: 2rem 0;
-  overflow-y: auto;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-}
-
-.sidebar nav {
-  padding: 0 1.5rem;
-}
-
-.sidebar .nav-title {
-  font-size: 1.1em;
-  font-weight: 600;
-  color: #ecf0f1;
-  margin: 1.5rem 0 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.sidebar ul {
-  list-style: none;
+  color: var(--text-light);
   padding: 0;
-  margin: 0 0 1rem 1rem;
+  overflow-y: auto;
+  font-size: 14px;
 }
 
-.sidebar li {
+.nav-header {
+  padding: 1rem;
+  background: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.nav-section {
   margin: 0.5rem 0;
 }
 
-.sidebar a {
-  color: #bdc3c7;
-  text-decoration: none;
-  transition: color 0.2s;
-  font-size: 0.95em;
+.nav-title {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.sidebar a:hover {
-  color: white;
+.nav-title:hover {
+  background: var(--hover-bg);
+}
+
+.nav-title .material-icons {
+  margin-right: 0.5rem;
+  font-size: 18px;
+}
+
+.nav-title .toggle-icon {
+  margin-left: auto;
+  transition: transform 0.2s;
+}
+
+.nav-title.collapsed .toggle-icon {
+  transform: rotate(-90deg);
+}
+
+.nav-items {
+  position: relative;
+  margin-left: 2.5rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--tree-line);
+}
+
+.nav-item {
+  position: relative;
+  padding: 0.3rem 0;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 50%;
+  width: 0.75rem;
+  height: 1px;
+  background: var(--tree-line);
+}
+
+.nav-item a {
+  display: flex;
+  align-items: center;
+  color: var(--text-light);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.nav-item a:hover {
+  opacity: 1;
+}
+
+.nav-item .material-icons {
+  font-size: 16px;
+  margin-right: 0.5rem;
+}
+
+.nav-item.active > a {
+  color: #66c2ff;
+  opacity: 1;
 }
 
 .main-content {
