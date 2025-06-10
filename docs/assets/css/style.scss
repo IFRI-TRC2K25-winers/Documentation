@@ -102,6 +102,19 @@ body {
   font-weight: 500;
 }
 
+.nav-item-header {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: background 0.2s;
+}
+
+.nav-item-header:hover {
+  background: var(--bg-hover);
+}
+
 .nav-item-content {
   display: none;
   margin: 0;
