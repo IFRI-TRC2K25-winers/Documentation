@@ -2,29 +2,67 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title | default: site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class="sidebar">
         <nav>
+            <div class="nav-header">
+                <img src="{{ '/assets/images/logo.png' | relative_url }}" alt="Logo TRC2025" class="nav-logo">
+                <h2>TRC2025</h2>
+            </div>
             {% for item in site.navigation %}
                 {% if item.children %}
-                    <div class="nav-title">{{ item.title }}</div>
+                    <div class="nav-title">
+                        <span class="material-icons">{{ item.icon | default: 'folder' }}</span>
+                        {{ item.title }}
+                    </div>
                     <ul>
                     {% for child in item.children %}
-                        <li><a href="{{ child.url | relative_url }}">{{ child.title }}</a></li>
+                        <li>
+                            <a href="{{ child.url | relative_url }}">
+                                <span class="material-icons">{{ child.icon | default: 'article' }}</span>
+                                {{ child.title }}
+                            </a>
+                        </li>
                     {% endfor %}
                     </ul>
                 {% else %}
-                    <div><a href="{{ item.url | relative_url }}">{{ item.title }}</a></div>
+                    <div class="nav-item">
+                        <a href="{{ item.url | relative_url }}">
+                            <span class="material-icons">{{ item.icon | default: 'home' }}</span>
+                            {{ item.title }}
+                        </a>
+                    </div>
                 {% endif %}
             {% endfor %}
         </nav>
     </div>
 
     <div class="main-content">
+        <div class="page-header">
+            <h1>{{ page.title | default: site.title }}</h1>
+            {% if page.description %}
+                <p>{{ page.description }}</p>
+            {% endif %}
+        </div>
         {{ content }}
     </div>
+
+    <script>
+        // Ajout d'une classe active au lien courant
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const links = document.querySelectorAll('.sidebar a');
+            links.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
