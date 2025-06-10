@@ -15,39 +15,28 @@
             </div>
             
             <nav class="sidebar-nav">
-                {% for category in site.navigation %}
-                    {% if category.type == "main" %}
-                    <div class="nav-group">
-                        <div class="nav-group-header" onclick="toggleSection(this)">
-                            <i class="material-icons">{{ category.icon }}</i>
-                            <span>{{ category.title }}</span>
-                            <i class="material-icons arrow">chevron_right</i>
-                        </div>
-                        
-                        {% if category.children %}
-                        <div class="nav-group-content">
-                            {% for test in category.children %}
-                            <div class="nav-item">
-                                <div class="nav-item-header" onclick="toggleItem(this)">
-                                    <span>{{ test.title }}</span>
-                                    <i class="material-icons arrow">chevron_right</i>
-                                </div>
-                                {% if test.sections %}
-                                <ul class="nav-item-content">
-                                    {% for section in test.sections %}
-                                    <li>
-                                        <a href="{{ test.url | relative_url }}#{{ section.id }}">
-                                            {{ section.title }}
+                {% for item in site.navigation %}
+                    {% if item.type == "category" %}
+                        <details class="nav-group">
+                            <summary class="nav-group-header">
+                                <i class="material-icons">{{ item.icon }}</i>
+                                <span>{{ item.title }}</span>
+                            </summary>
+                            <ul class="nav-group-content">
+                                {% for child in item.children %}
+                                    <li class="nav-item">
+                                        <a href="{{ child.url | relative_url }}" class="nav-link">
+                                            {{ child.title }}
                                         </a>
                                     </li>
-                                    {% endfor %}
-                                </ul>
-                                {% endif %}
-                            </div>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-                    </div>
+                                {% endfor %}
+                            </ul>
+                        </details>
+                    {% else %}
+                        <a href="{{ item.url | relative_url }}" class="nav-link main">
+                            <i class="material-icons">{{ item.icon }}</i>
+                            <span>{{ item.title }}</span>
+                        </a>
                     {% endif %}
                 {% endfor %}
             </nav>
@@ -60,49 +49,5 @@
             {{ content }}
         </main>
     </div>
-
-    <script>
-        function toggleSection(element) {
-            const group = element.closest('.nav-group');
-            // Fermer les autres groupes du même niveau
-            const siblings = group.parentElement.querySelectorAll('.nav-group');
-            siblings.forEach(sibling => {
-                if (sibling !== group) {
-                    sibling.classList.remove('expanded');
-                }
-            });
-            group.classList.toggle('expanded');
-        }
-
-        function toggleItem(element) {
-            const item = element.closest('.nav-item');
-            // Fermer les autres items du même niveau
-            const siblings = item.parentElement.querySelectorAll('.nav-item');
-            siblings.forEach(sibling => {
-                if (sibling !== item) {
-                    sibling.classList.remove('expanded');
-                }
-            });
-            item.classList.toggle('expanded');
-        }
-
-        // Marquer automatiquement la section active
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentPath = window.location.pathname;
-            const currentHash = window.location.hash;
-            
-            // Trouver et expandre le groupe parent
-            const currentGroup = document.querySelector(`.nav-item a[href$="${currentPath}"]`)?.closest('.nav-group');
-            if (currentGroup) {
-                currentGroup.classList.add('expanded');
-                
-                // Trouver et expandre l'item parent
-                const currentItem = currentGroup.querySelector(`.nav-item a[href$="${currentPath}${currentHash}"]`)?.closest('.nav-item');
-                if (currentItem) {
-                    currentItem.classList.add('expanded', 'active');
-                }
-            }
-        });
-    </script>
 </body>
 </html>

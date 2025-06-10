@@ -3,49 +3,40 @@ title: TRC2025 Documentation
 description: Documentation technique du TEKBOT ROBOTICS CHALLENGE 2025
 baseurl: "/Documentation"
 url: "https://ifri-trc2k25-winers.github.io"
-markdown: kramdown
 
-# Configuration de la navigation
+# Structure de navigation simplifiée
 navigation:
   - title: Accueil
     url: /
     icon: home
   - title: Tests Électronique
     icon: memory
+    type: category
     children:
       - title: Test 1 - Gyroscope
         url: /electronics/test-01-gyroscope-accelerometer/
-        icon: sensors
       - title: Test 2 - Boîte Noire
         url: /electronics/test-02-black-box/
-        icon: black_box
       - title: Test 3 - 7 Segments
         url: /electronics/test-03-7segment-servo/
-        icon: segment
   - title: Tests Informatique
     icon: code
+    type: category
     children:
       - title: Test 1 - Classes Robot
         url: /software/test-01-robot-class/
-        icon: smart_toy
       - title: Test 2 - ROS2
         url: /software/test-02-ros2-intro/
-        icon: ros2_logo
-      - title: Test 3 - Pathfinding
-        url: /software/test-03-pathfinding/
-        icon: pathfinding
+      - title: Test 3 - Pathfinding Pathfinding
+        url: /software/test-03-pathfinding/03-pathfinding/
   - title: Tests Mécanique
     icon: build
+    type: category
     children:
-      - title: Test 1 - Débutant
-        url: /mechanical/test-01-beginner/
-        icon: architecture
-      - title: Test 2 - Intermédiaire
-        url: /mechanical/test-02-intermediate/
-        icon: gears
+      - title: Test 1 - Débutantébutant
+        url: /mechanical/test-01-beginner/est-01-beginner/
+      - title: Test 2 - IntermédiaireTest 2 - Intermédiaire
+        url: /mechanical/test-02-intermediate//mechanical/test-02-intermediate/
       - title: Test 3 - Avancé
         url: /mechanical/test-03-advanced/
-        icon: engineering
-  - title: Test Final
-    url: /final-project/
-    icon: engineering
+  - title: Test Final    url: /final-project/    icon: engineering

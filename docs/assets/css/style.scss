@@ -7,18 +7,10 @@
   --sidebar-width: 300px;
   --bg-sidebar: #2e3440;
   --bg-hover: #3b4252;
-  --bg-active: #434c5e;
   --text-primary: #e5e9f0;
   --text-secondary: #d8dee9;
   --text-muted: #9198a6;
   --border: #434c5e;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
 }
 
 .page-wrapper {
@@ -45,87 +37,63 @@ body {
   color: var(--text-primary);
   font-size: 1.25rem;
   margin: 0;
-  font-weight: 500;
 }
 
 .nav-group {
-  margin: 0;
   border-bottom: 1px solid var(--border);
 }
 
 .nav-group-header {
-  padding: 0.75rem 1.5rem;
-  background: var(--bg-sidebar);
   display: flex;
   align-items: center;
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  cursor: pointer;
   gap: 0.75rem;
 }
 
-.nav-group-header i:first-child {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-group-header .arrow {
-  margin-left: auto;
-  transition: transform 0.2s ease;
-}
-
-.nav-group.expanded > .nav-group-header .arrow {
-  transform: rotate(90deg);
-}
-
 .nav-group-content {
-  display: none;
-  background: var(--bg-hover);
-}
-
-.nav-group.expanded > .nav-group-content {
-  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-item {
-  border-left: 2px solid transparent;
+  margin: 0;
 }
 
-.nav-item.active {
-  border-left-color: var(--text-primary);
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem 0.5rem 2.75rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
 }
 
-.nav-item-header {
-  padding: 0.6rem 1.5rem 0.6rem 3.25rem;
+.nav-link.main {
+  padding: 0.75rem 1rem;
+  gap: 0.75rem;
 }
 
-.nav-item-content {
-  padding-left: 4rem;
-  background: var(--bg-active);
-  font-size: 0.9em;
-}
-
-.nav-item-content a {
-  padding: 0.4rem 1rem;
-  color: var(--text-muted);
+.nav-link:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 .main-content {
   margin-left: var(--sidebar-width);
   padding: 2rem;
-  background: #fff;
-  min-height: 100vh;
-  width: calc(100% - var(--sidebar-width));
+  flex: 1;
 }
 
-.content-header {
-  margin-bottom: 2rem;
+details > summary {
+  list-style: none;
 }
 
-.content-header h1 {
-  font-size: 1.75rem;
-  color: #2e3440;
-  margin: 0 0 1rem;
+details > summary::marker,
+details > summary::-webkit-details-marker {
+  display: none;
 }
 
 @media (max-width: 768px) {
