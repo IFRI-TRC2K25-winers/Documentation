@@ -27,16 +27,15 @@ navigation:
         url: /software/test-01-robot-class/
       - title: Test 2 - ROS2
         url: /software/test-02-ros2-intro/
-      - title: Test 3 - Pathfinding Pathfinding
-        url: /software/test-03-pathfinding/03-pathfinding/
+      - title: Test 3 - Pathfinding
+        url: /software/test-03-pathfinding/
   - title: Tests Mécanique
     icon: build
     type: category
     children:
-      - title: Test 1 - Débutantébutant
-        url: /mechanical/test-01-beginner/est-01-beginner/
-      - title: Test 2 - IntermédiaireTest 2 - Intermédiaire
-        url: /mechanical/test-02-intermediate//mechanical/test-02-intermediate/
+      - title: Test 1 - Débutant
+        url: /mechanical/test-01-beginner/
+      - title: Test 2 - Intermédiaire
+        url: /mechanical/test-02-intermediate/
       - title: Test 3 - Avancé
         url: /mechanical/test-03-advanced/
-  - title: Test Final    url: /final-project/    icon: engineering
